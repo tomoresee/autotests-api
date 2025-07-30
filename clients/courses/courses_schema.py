@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field, EmailStr, ConfigDict
-from clients.files.files_client import File
-from pydantic_create_user import UserSchema
+from clients.files.files_schema import FileSchema
+from clients.users.users_schema import UserSchema
 
 
 # Добавили описание структуры курса
@@ -13,7 +13,7 @@ class CourseSchema(BaseModel):
     maxScore: int
     minScore: int
     description: str
-    previewFile: File  # Вложенная структура файла
+    previewFile: FileSchema  # Вложенная структура файла
     estimatedTime: str
     createdByUser: UserSchema  # Вложенная структура пользователя
 

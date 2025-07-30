@@ -62,7 +62,7 @@ class CoursesClient(APIClient):
     # Добавили новый метод
     def create_course(self, request: CreateCourseRequestSchema) -> CreateCourseResponseSchema:
         response = self.create_course_api(request)
-        return response.json()
+        return CreateCourseResponseSchema.model_validate_json(response.text)
 
 
 def get_courses_client(user: AuthenticationUserSchema) -> CoursesClient:
