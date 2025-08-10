@@ -25,7 +25,6 @@ authentication_user = AuthenticationUserSchema(
 files_client = get_files_client(authentication_user)
 courses_client = get_courses_client(authentication_user)
 
-# Вместо CreateFileRequestDict используем CreateFileRequestSchema
 create_file_request = CreateFileRequestSchema(
     filename="image.png",
     directory="courses",
@@ -36,12 +35,12 @@ print('Create file data:', create_file_response)
 
 create_course_request = CreateCourseRequestSchema(
     title="Python",
-    maxScore=100,
-    minScore=10,
+    max_score=100,
+    min_score=10,
     description="Python API course",
-    estimatedTime="2 weeks",
-    previewFileId=create_file_response.file.id,  # Используем атрибуты место ключей
-    createdByUserId=create_user_response.user.id  # Используем атрибуты место ключей
+    estimated_time="2 weeks",
+    preview_file_id=create_file_response.file.id,
+    created_by_user_id=create_user_response.user.id
 )
 create_course_response = courses_client.create_course(create_course_request)
 print('Create course data:', create_course_response)
